@@ -10,9 +10,10 @@ import { IoChevronDown } from "react-icons/io5";
 
 interface Props {
 	onSelectSortOrder: (sortOrder: string) => void;
+  selectedSortOrder: string;
 }
 
-const SortSelector = ({ onSelectSortOrder }: Props) => {
+const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -24,7 +25,7 @@ const SortSelector = ({ onSelectSortOrder }: Props) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<IoChevronDown />}>
-        Order by: Relevance
+        {`Order by: ${sortOrders.find(order => order.value === selectedSortOrder)?.label || "Relevance"}`}
       </MenuButton>
       <MenuList>
         <MenuOptionGroup defaultValue="" title="Order by" type="radio">

@@ -53,6 +53,7 @@ function App() {
             />
           </Box>
           <SortSelector
+            selectedSortOrder={gameQuery.sortOrder}
             onSelectSortOrder={(sortOrder) =>
               setGameQuery({ ...gameQuery, sortOrder })
             }
