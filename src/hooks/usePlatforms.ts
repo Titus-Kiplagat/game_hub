@@ -9,7 +9,6 @@ export interface Platform {
 	slug: string;
 }
 
-// const usePlatforms = () => ({data: platforms, loading: false, error: null})
 const usePlatforms = () => useQuery({
 	queryKey: ["platforms"],
 	queryFn: () => apiClient.get<FetchResponse<Platform>>("/platforms").then(({ data }) => data),
