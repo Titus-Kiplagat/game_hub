@@ -7,13 +7,9 @@ import {
   MenuOptionGroup,
 } from "@chakra-ui/react";
 import { IoChevronDown } from "react-icons/io5";
+import useGameQueryStore from "../store";
 
-interface Props {
-	onSelectSortOrder: (sortOrder: string) => void;
-  selectedSortOrder: string;
-}
-
-const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
+const SortSelector = () => {
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date added" },
@@ -22,15 +18,20 @@ const SortSelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
+
+  const setSortOrder = useGameQueryStore((s) => s.setSortOrder);
+  const sortOrder = useGameQueryStore((s) => s.gameQuery.sortOrder);
+
+  const selectedSortOrder = sortOrders.find((order) => order.value === sortOrder)?.value;
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<IoChevronDown />}>
-        {`Order by: ${sortOrders.find(order => order.value === selectedSortOrder)?.label || "Relevance"}`}
+        {`Order by: ${selectedSortOrder || "Relevance"}`}
       </MenuButton>
       <MenuList>
         <MenuOptionGroup defaultValue="" title="Order by" type="radio">
           {sortOrders.map((order) => (
-            <MenuItemOption key={order.value} value={order.value} onClick={() => onSelectSortOrder(order.value)} >
+            <MenuItemOption key={order.value} value={order.value} onClick={() => setSortOrder(order.value)} >
               {order.label}
             </MenuItemOption>
           ))}
