@@ -18,8 +18,8 @@ const useGames = (gameQuery: GameQuery) => {
 	const fetchGames = async ({ pageParam }: { pageParam: number }) => {
 		return apiClient.get({
 			params: {
-				genres: gameQuery.genre?.id,
-				parent_platforms: gameQuery.platform?.id,
+				genres: gameQuery.genreId,
+				parent_platforms: gameQuery.platformId,
 				ordering: gameQuery.sortOrder,
 				search: gameQuery.searchText,
 				page: pageParam,
@@ -34,7 +34,7 @@ const useGames = (gameQuery: GameQuery) => {
 		getNextPageParam: (lastPage, allPages) => {
 			return lastPage.next ? allPages.length + 1 : undefined
 		},
-		staleTime: 1000 * 60 * 60, // 1 hour
+		staleTime: 1000 * 60 * 60 * 24, // 24 hour
 	})
 }
 
