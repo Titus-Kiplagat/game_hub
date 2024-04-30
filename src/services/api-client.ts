@@ -2,8 +2,9 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {
 	count: number;
+	next: string | null;
+	previous: string | null;
 	results: T[];
-	next?: string;
 }
 
 const axiosInstance = axios.create({
@@ -20,7 +21,7 @@ class APIClient<T> {
 		this.endpoint = endpoint;
 	}
 
-	get = async(config?: AxiosRequestConfig) => {
+	get = async (config?: AxiosRequestConfig) => {
 		return axiosInstance.get<FetchResponse<T>>(this.endpoint, config).then(response => response.data);
 	}
 }

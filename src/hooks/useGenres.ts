@@ -12,9 +12,9 @@ const apiClient = new APIClient<Genre>("/genres");
 
 const useGenres = () => useQuery({
 	queryKey: ["genres"],
-	queryFn: apiClient.get, 
+	queryFn: apiClient.get,
 	staleTime: 1000 * 60 * 60 * 24, // 24 hours
-	initialData: { count: genres.length, results: genres },
+	initialData: genres,
 
 });
 

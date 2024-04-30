@@ -8,13 +8,13 @@ export interface Platform {
 	name: string;
 }
 
-const apiClient = new APIClient<Platform>("/Platforms");
+const apiClient = new APIClient<Platform>("/platforms");
 
 const usePlatforms = () => useQuery({
 	queryKey: ["platforms"],
 	queryFn: apiClient.get,
 	staleTime: 1000 * 60 * 60 * 24,	// 24 hours
-	initialData: { count: platforms.length, results: platforms},
+	initialData: platforms,
 })
 
 export default usePlatforms;
