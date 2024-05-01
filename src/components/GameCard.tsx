@@ -19,7 +19,7 @@ const GameCard = ({ game }: Props) => {
     rating_top: rating,
   } = game;
   return (
-    <Card>
+    <Card className="h-full">
       <Image src={getCroppedImageUrl(background_image)} borderRadius="lg" />
       <CardBody>
         <Heading fontSize="2xl" noOfLines={1}>
