@@ -15,9 +15,9 @@ const SearchInput = () => {
       onSubmit={(event) => {
         event.preventDefault();
         if (ref.current) {
-          setSearchText(ref.current.value)
+          setSearchText(ref.current.value);
           ref.current.value = "";
-        };
+        }
 
         navigate("/");
       }}

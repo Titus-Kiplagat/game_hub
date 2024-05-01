@@ -17,8 +17,8 @@ interface GameQueryStore {
 
 const useGameQueryStore = create<GameQueryStore>((set) => ({
 	gameQuery: {},
-	setGenreId: (genreId: number) => set((store) => ({ gameQuery: { ...store.gameQuery, genreId } })),
-	setPlatformId: (platformId: number) => set((store) => ({ gameQuery: { ...store.gameQuery, platformId } })),
+	setGenreId: (genreId: number) => set((store) => ({ gameQuery: { ...store.gameQuery, genreId, searchText: undefined } })),
+	setPlatformId: (platformId: number) => set((store) => ({ gameQuery: { ...store.gameQuery, platformId, searchText: undefined } })),
 	setSortOrder: (sortOrder: string) => set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
 	setSearchText: (searchText: string) => set(() => ({ gameQuery: {  searchText } })),
 }));
