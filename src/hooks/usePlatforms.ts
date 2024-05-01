@@ -13,7 +13,7 @@ const apiClient = new APIClient<Platform>("/platforms");
 
 const usePlatforms = () => useQuery({
 	queryKey: ["platforms"],
-	queryFn: apiClient.get,
+	queryFn: apiClient.getAll,
 	staleTime: ms("1d"),
 	initialData: platforms,
 })
